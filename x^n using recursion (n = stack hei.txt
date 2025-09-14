@@ -1,0 +1,26 @@
+// x^n using recursion (n = stack height)
+public class Practice {
+    public static int printxn(int x, int n) {
+        if(n == 0) {         // Base 1
+            return 1 ;
+        } else if(x == 0) { // base 2
+            return 0;
+        }
+
+        int xPownm1 = printxn(x, n-1);   // Work
+        int xPow = x * xPownm1;
+        return xPow;
+    }
+
+    public static void main(String[] args) {
+        int x=2, n=4;
+        int ans = printxn(x,n);
+        System.out.println(ans);
+    }
+}
+// n = 4 and stack height is 5 
+// that is negligible diff of 1 
+// approximately n = stackHeight 
+
+Output:
+16

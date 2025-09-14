@@ -1,0 +1,42 @@
+// interLeaves using Queue(sigma)
+import java.util.*;
+import java.util.LinkedList;
+public class Revision {
+    public static void interLeaves(Queue<Integer> q) {
+        // creating queue to store first half elements 
+        Queue<Integer> firstQueue = new LinkedList<>();
+        // taking size 
+        int size = q.size();
+
+        // adding first half elements to the firstQueue
+        for(int i=0; i<(size/2); i++) {
+            firstQueue.add(q.remove());
+        }
+
+        // removing elements from the firstQueue and storing at the end of the queue
+        // and also removing front queue and storing at the end one by one .
+        while(!firstQueue.isEmpty()) {
+            q.add(firstQueue.remove());
+            q.add(q.remove());
+        }
+    }
+
+    public static void main(String[] args) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        q.add(4);
+        q.add(5);
+        q.add(6);
+        q.add(7);
+        q.add(8);
+        q.add(9);
+        q.add(10);
+        interLeaves(q);
+
+        while(!q.isEmpty()) {
+            System.out.print(q.remove() + " ");
+        }
+    }
+}

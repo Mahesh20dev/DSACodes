@@ -1,0 +1,26 @@
+// Buy and Sell Stocks 
+public class DSA {
+
+    public static int BuySellStock(int[] prices) {
+        int buy = Integer.MAX_VALUE;
+        int maxProfit = 0;
+
+        for(int i=0; i<prices.length; i++) {
+            if(buy < prices[i]) {
+                int profit = prices[i] - buy;             // MaxProfit
+                maxProfit = Math.max(maxProfit, profit);  // maxprofit
+            } else {
+                buy = prices[i];
+            }
+        }
+        return maxProfit;
+    }
+
+    public static void main(String[] args) {
+        int[] prices = {7, 1, 5, 3, 6, 4};
+        System.out.println(BuySellStock(prices));
+    }
+}
+
+Output:
+5                   time complexity = O(n)

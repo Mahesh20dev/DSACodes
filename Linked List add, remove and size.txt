@@ -1,0 +1,119 @@
+// Linked List add, remove and size (Stack implementation)
+import java.util.ArrayList;
+public class Pattern {
+    Node head;
+    private int size;
+    Pattern() {
+        this.size = 0;
+    }
+    class Node {
+        String data;
+        Node next;
+
+        Node(String data) {
+            this.data = data;
+            this.next = null;
+            size++;
+        }
+    }
+
+    // addFirst
+    public void addFirst(String data) {
+        Node newNode = new Node(data);
+        if(head == null) {
+            head = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // addLast
+    public void addLast(String data) {
+        Node newNode = new Node(data);
+        if(head == null) {
+            head = newNode;
+            return;
+        }
+        Node currNode = head;
+        while(currNode.next != null) {
+            currNode = currNode.next;
+        }
+        currNode.next = newNode;
+    }
+
+    // Print
+    public void printList() {
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        Node currNode = head;
+        while(currNode != null) {
+            System.out.print(currNode.data + " -> ");
+            currNode = currNode.next;
+        }
+        System.out.println("Null");
+    }
+
+    // deleteFirst
+    public void deleteFirst() {
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        size--;
+        head = head.next;
+    }
+
+    // deleteLast
+    public void deleteLast() {
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        size--;
+        if(head.next == null) {
+            head = null;
+            return;
+        }
+
+        Node secondLast = head;
+        Node lastNode = head.next;
+        while(lastNode.next != null) {
+            secondLast = secondLast.next;
+            lastNode = lastNode.next;
+        }
+        secondLast.next = null;
+    }
+
+    //size function
+    public int getSize() {
+        return size;
+    }
+
+    //main function
+    public static void main(String... args) {
+        Pattern list = new Pattern();
+        list.addFirst("a");
+        list.addFirst("is");
+        list.addFirst("this");
+        list.addLast("list");
+        list.printList();
+
+        list.deleteFirst();
+        list.printList();
+
+        list.deleteLast();
+        list.printList();
+
+        System.out.println(list.getSize());
+    }
+}
+
+Output:
+this -> is -> a -> list -> Null
+is -> a -> list -> Null
+is -> a -> list -> Null
+2

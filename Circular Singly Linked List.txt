@@ -1,0 +1,113 @@
+// Circular Singly Linked List
+public class DSA {
+    public static class Node {
+        int data;
+        Node next;
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public static Node head;
+    public static Node tail;
+    public static int size;
+
+    public void addFirst(int data) {
+        Node newNode = new Node(data);
+        size++;
+        if(head == null) {
+            head = tail = newNode;
+            head.next = head;
+            return;
+        }
+        
+        tail.next = newNode;
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void addLast(int data) {
+        Node newNode = new Node(data);
+        size++;
+        if(head == null) {
+            head = tail = newNode;
+            head.next = head;
+            return;
+        }
+        tail.next = newNode;
+        tail = newNode;
+        tail.next = head;
+    }
+
+    public int removeFirst() {
+        if(size == 0) {
+            System.out.println("Linked List is empty");
+            return Integer.MIN_VALUE;
+        } else if(size == 1) {
+            int val = head.data;
+            head = tail = null;
+            size = 0;
+            return val;
+        }
+        int val = head.data;
+        head = head.next;
+        tail.next = head;
+        size--;
+        return val;
+    }
+
+    public int removeLast() {
+        if(size == 0) {
+            System.out.println("Linked List is empty");
+            return Integer.MIN_VALUE;
+        } else if(size == 1) {
+            int val = head.data;
+            head = tail = null;
+            size = 0;
+            return val;
+        }
+
+        Node prev = head;
+        int i=0;
+        while(i < size - 2) {
+            prev = prev.next;
+            i++;
+        }
+        int val = tail.data;
+        tail = prev;
+        tail.next = head;
+        size--;
+        return val;
+    }
+
+    public void print() {
+        Node temp = head;
+        // System.out.print("null <-> ");
+        while(true) {
+            System.out.print(temp.data + " <-> ");
+            temp = temp.next;
+            if(temp == head) {
+                break;
+            }
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        DSA cll = new DSA();
+        cll.addFirst(3);
+        cll.addFirst(2);
+        cll.addFirst(1);
+        cll.addLast(4);
+        cll.addLast(5);
+        cll.print();
+
+        cll.removeFirst();
+        cll.print();
+
+        cll.removeLast();
+        cll.print();
+    }
+}

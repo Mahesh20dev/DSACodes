@@ -1,0 +1,35 @@
+// Diagonal Tree Traversal (sigma) - geeks
+class Tree {
+    public ArrayList<Integer> diagonal(Node root){
+        ArrayList<Integer> ans = new ArrayList<>();
+        Queue<Node> q = new LinkedList<>();
+        
+        q.add(root);
+        while(!q.isEmpty()) {
+            Node curr = q.remove();
+            while(curr != null) {
+                if(curr.left != null) {
+                    q.add(curr.left);
+                }
+                ans.add(curr.data);
+                curr = curr.right;
+            }
+        }
+        return ans;
+    }
+}
+
+// Time complexity = O(N)
+// space complexity = O(N) + O(N)
+//                   Queue    ArrayList
+
+/*          8
+ *        /   \
+ *      3      10
+ *    /   \      \
+ *   1     6     14
+ *       /   \   /
+ *      4     7 13
+ *
+ *  Output : 8 10 14 3 6 7 13 1 4
+*/

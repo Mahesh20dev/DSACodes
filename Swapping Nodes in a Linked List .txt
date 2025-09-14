@@ -1,0 +1,151 @@
+// Swapping Nodes in a Linked List 
+
+import java.util.LinkedList;
+public class Leetcode {
+    public static void swap(int x, int y, int size, int arr[]) {
+        int xpos = -1;
+        int ypos = -1;
+
+        for(int i=0; i<arr.length; i++) {
+            if(arr[i] == x) {
+                xpos = i;
+            }
+            if(arr[i] == y) {
+                ypos = i;
+            }
+        }
+
+        arr[xpos] = y;
+        arr[ypos] = x;
+    }
+
+    public static void main(String[] args) {
+        LinkedList<Integer> ll = new LinkedList<>();
+        ll.add(1);
+        ll.add(2);
+        ll.add(3);
+        ll.add(4);
+        ll.add(5);
+        int size = ll.size();
+        int x = 2; 
+        int y = 5;
+
+        int arr[] = new int[size];
+        for(int i=0; i<size; i++) {
+            arr[i] = ll.peek();
+            ll.poll();
+        }
+
+        swap(x, y, size, arr);
+        // System.out.println(ll);
+
+        for(int i=0; i<size; i++) {
+            ll.add(arr[i]);
+        }
+
+        System.out.println(ll);
+    }
+}
+
+// Approach
+// 1) copy ll element into the array
+// 2) swap in the array
+// 3) copy back to ll
+
+// time and space complexit = O(n)
+
+// type 2
+
+class Solution {
+    public void swap(int x, int y, int arr[]) {
+        int xVal = arr[x];
+        int yVal = arr[y];
+
+        arr[x] = yVal;
+        arr[y] = xVal;
+    }
+
+    public ListNode swapNodes(ListNode head, int k) {
+        ListNode temp = head;
+        int size = 0;
+        while(temp != null) {
+            size++;
+            temp = temp.next;
+        }
+        // swapping pos
+        int x = k-1;
+        int y = size - k;
+
+        int arr[] = new int[size];
+        ListNode curr = head;
+        for(int i=0; i<size; i++) {
+            arr[i] = curr.val;
+            curr = curr.next;
+        }
+
+        swap(x, y, arr);
+
+        ListNode dummy = new ListNode(0);
+        ListNode newHead = dummy;
+        for (int i = 0; i < size; i++) {
+            newHead.next = new ListNode(arr[i]);
+            newHead = newHead.next;
+        }
+
+        return dummy.next; // Return the updated head
+    }
+}
+
+// Optimized solution
+// method 2
+    // Time and space = O(N) and O(1) respectively
+    public ListNode swapNodes(ListNode head, int k) {
+        int n = 0;
+        ListNode temp = head;
+        while(temp != null) {
+            n++;
+            temp = temp.next;
+        }
+
+        if(k > n || 2*k-1 == n) {   // if k value is exactly middle
+            return head;
+        }
+
+        int x = k;
+        int y = n - k + 1;
+
+        ListNode prevX = null, currX = head;
+        int i = 1;
+        while(i < x) {
+            prevX = currX;
+            currX = currX.next;
+            i++;
+        }
+
+        ListNode prevY = null, currY = head;
+        int j = 1;
+        while(j < y) {
+            prevY = currY;
+            currY = currY.next;
+            j++;
+        } 
+
+        // swap
+        if(prevX != null) {
+            prevX.next = currY;
+        } else {
+            head = currY;
+        }
+
+        if(prevY != null) {
+            prevY.next = currX;
+        } else {
+            head = currX;
+        }
+
+        ListNode tempNext = currX.next;
+        currX.next = currY.next;
+        currY.next = tempNext;
+
+        return head;
+    }

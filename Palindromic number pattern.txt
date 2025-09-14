@@ -1,0 +1,28 @@
+public class Pattern1 {
+    public static void main(String[] args) {
+        int n = 5;
+        
+        
+        //Outer loop
+        for(int i=1; i<=n ; i++) {
+            //Inner loop
+            for(int j=1; j<=(n-i); j++) {
+                System.out.print(" ");
+            } for(int j=i; j>=1; j--) {  // print no from right to left
+                System.out.print(j);
+            }
+            for(int j=2; j<=i; j++) {  // print no from left to right from 2nd line
+                System.out.print(j);
+            }
+
+            System.out.println();
+        }
+    }
+}
+
+Output
+    1
+   212
+  32123
+ 4321234
+543212345

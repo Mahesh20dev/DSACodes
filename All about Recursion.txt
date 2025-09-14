@@ -1,0 +1,126 @@
+//All about Recursion
+public class Main {
+
+    public static int factorial(int n) {   // O(n)
+        if(n == 1 || n == 0 || n < 0) {
+            return 1;
+        }
+
+        int fact = 1;
+        fact = n * factorial(n-1);
+        return fact;
+    }
+
+    public static void printNo(int n) {    // O(n)
+        if(n == 1) {
+            System.out.print(n + " ");
+            return;
+        }
+        printNo(n-1);
+        System.out.print(n + " ");
+        // printNo(n-1);
+    }
+
+    public static int sumOfN(int n) {  // O(n)
+        if(n == 1) {
+            return n;
+        }
+        int sum = 0;
+        sum = n + sumOfN(n-1);
+        return sum;
+    }
+
+    public static int fibonacci(int n) { // O(2^n)
+        if(n == 0 || n == 1) {
+            return n;
+        }
+        
+        int fibNM1 = fibonacci(n-1);
+        int fibNM2 = fibonacci(n-2);
+        int fibN = fibNM1 + fibNM2;
+        return fibN;
+    }
+
+    public static boolean isSorted(int arr[], int i) {  // O(N)
+        if(i == arr.length-1) {
+            return true;
+        }
+        if(arr[i] > arr[i+1]) {
+            return false;
+        }
+
+        return isSorted(arr, i+1);
+    }
+
+    public static int occurFirstTime(int arr[], int i, int key) {  // O(N)
+        if(i == arr.length) {
+            return -1;
+        }
+        if(arr[i] == key) {
+            return i;
+        }
+
+        return occurFirstTime(arr, i+1, key);
+    }
+
+    public static int occurLastTime(int arr[], int i, int key) {  // O(n)
+        if(i == -1) {
+            return -1;
+        }
+        if(arr[i] == key) {
+            return i;
+        }
+
+        return occurLastTime(arr, i-1, key);
+    }
+
+    public static int powerXN(int x, int n) {   // O(n)
+        if(n == 0) {
+            return 1;
+        }
+        int pow = 1;
+        pow = x * powerXN(x, n-1);
+        return pow;
+    }
+
+    public static int powerXNOptimised(int x, int n) {    //O(logn)
+        if(n == 0) {
+            return 1;
+        }
+
+        int halfpow = powerXNOptimised(x, n/2);
+        // if n is even
+        int halfPowsqaure = halfpow * halfpow;
+        // if n is odd
+        if(n % 2 != 0) {
+            return x * halfPowsqaure;
+        }
+
+        return halfPowsqaure;
+    }
+
+    public static void printNoInWord(int n, String arr[]) {
+        if(n == 0) {
+            return;
+        }
+        int lastDigit = n % 10;
+        printNoInWord(n/10, arr);
+        System.out.print(arr[lastDigit] + " ");
+    }
+
+    public static void main(String[] args) {
+        // System.out.println(factorial(10));
+        // printNo(10);
+        // System.out.println(sumOfN(4));
+        // System.out.println(fibonacci(5));
+
+        int arr[] = {1, 2, 5, 4, 5, 4, 6, 5, 5};
+        // System.out.println(isSorted(arr, 0));
+        // System.out.println(occurFirstTime(arr, 0, 6));
+    //     System.out.println(occurLastTime(arr, arr.length-1, 5));
+        System.out.println(powerXNOptimised(2, 5));
+
+        String [] array = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        printNoInWord(1947, array);
+    }
+}

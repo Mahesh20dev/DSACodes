@@ -1,0 +1,49 @@
+// Custome Sort (sigma)
+import java.util.*;
+class Student{
+    String name;
+    int rollNo;
+    char section;
+    Student(String name, int rollNo, char section) {
+        this.name = name;
+        this.rollNo = rollNo;
+        this.section = section;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" + 
+        "name = " + name + 
+        ", roll no = " + rollNo + 
+        ", section = " + section + 
+        '}';
+    }
+}
+
+
+public class Solution{
+    public static void main(String[] args) {
+        Student s1 = new Student("Abuzar", 56, 'A');
+        Student s2 = new Student("Abuzar", 54, 'B');
+        Student s3 = new Student("Pranav", 73, 'C');
+
+        ArrayList<Student> ans = new ArrayList<>();
+        ans.add(s1);
+        ans.add(s2);
+        ans.add(s3);
+
+        // sorting based on name, and if names are same , then by roll no
+        Collections.sort(ans, (st1, st2) -> {
+            if(st1.name.compareTo(st2.name) == 0) {
+                return Integer.compare(st1.rollNo, st2.rollNo);
+            } else {
+                return st1.name.compareTo(st2.name);
+            }
+        });
+
+        // printing sorted list
+        for(Student s : ans) {
+            System.out.println(s);
+        }
+    }
+}

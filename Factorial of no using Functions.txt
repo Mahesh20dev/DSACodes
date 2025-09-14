@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class Pattern {
+    public static void printFactorial(int n) {
+        if(n < 0) {
+            System.out.println("Invalid Number");
+            return;
+        }
+        int factorial = 1;
+
+        for(int i=n; i>=1; i--) {
+            factorial = factorial * i;
+        }
+        System.out.println(factorial);
+        return;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the no u want to get factorial: ");
+        int n = sc.nextInt();
+
+        printFactorial(n);
+    }
+}
+
+output:
+Enter the no u want to get factorial: 
+8
+40320

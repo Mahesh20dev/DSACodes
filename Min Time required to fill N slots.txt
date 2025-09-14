@@ -1,0 +1,43 @@
+//  Min Time required to fill N slots (sigma)
+import java.util.LinkedList;
+import java.util.*;
+public class Revision {
+    public static int minTime(int arr[], int N, int k) {
+        Queue<Integer> q = new LinkedList<>();
+        boolean vis[] = new boolean[N+1];
+
+        for(int i=0; i<k; i++) {
+            q.add(arr[i]);
+            vis[arr[i]] = true;
+        }
+
+        int time = 0;
+        while(q.size() > 0) {
+            int size = q.size();
+            for(int i=0; i<size; i++) {
+                int curr = q.poll();
+
+                if(curr-1 >= 1 && !vis[curr-1]) {
+                    q.add(curr-1);
+                    vis[curr-1] = true;
+                }
+
+                if(curr+1 <= N && !vis[curr+1]) {
+                    q.add(curr+1);
+                    vis[curr+1] = true;
+                }
+            }
+            time++;
+        }
+        return time-1;
+    }
+
+    public static void main(String[] args) {
+        int N = 5;    // no of slots
+        int arr[] = {1, 2, 3, 4, 5};
+        int k = arr.length; 
+        System.out.println(minTime(arr, N, k));
+    }
+}
+
+// Time and space complexity = O(N)

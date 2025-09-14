@@ -1,0 +1,42 @@
+// Conversion decimal to binary and binary to decimal
+import java.util.Scanner;
+import java.lang.Math;
+public class Practice {
+    // Function to convert Decimal to Binary.
+    public static String decimalToBinary(int decimal) {
+        StringBuilder binary = new StringBuilder();
+
+        while(decimal > 0) {
+            int remainder = decimal % 2;
+            binary.insert(0,remainder);
+            decimal /= 2;
+        }
+        return binary.toString();
+    }
+
+    // Function to convert Binary to Decimal.
+    public static int binaryToDecimal(String binary) {
+        int power = 0;
+        int decimal = 0;
+
+        for(int i=binary.length()-1; i>=0; i--) {
+            int digit = binary.charAt(i) - '0';
+            decimal += digit * Math.pow(2,power);
+            power++;
+        }
+        return decimal;
+    }
+
+    public static void main(String[] args) {
+        int decimal = 5;
+        String binary = "0101";
+
+        System.out.println(decimalToBinary(decimal));
+        System.out.println(binaryToDecimal(binary));
+    }
+}
+
+Output:
+
+101
+5

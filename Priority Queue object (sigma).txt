@@ -1,0 +1,49 @@
+// Priority Queue object (sigma)
+import java.util.PriorityQueue;
+public class Demo {
+    static class Student implements Comparable<Student> {
+        String name;
+        int rank;
+
+        public Student(String name, int rank) {
+            this.name = name;
+            this.rank = rank;
+        }
+
+        @Override
+        public int compareTo(Student s2) {
+            return this.rank - s2.rank;
+        }
+    }
+    public static void main(String[] args) {
+        // PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
+        PriorityQueue<Student> pq = new PriorityQueue<>();     // for reverse order use Comparator.reverseOrder
+
+        // pq.add(3);
+        // pq.add(4);  // O(logn)
+        // pq.add(1);
+        // pq.add(2);
+
+        pq.add(new Student("A", 12));
+        pq.add(new Student("B", 15));
+        pq.add(new Student("C", 10));
+        pq.add(new Student("D", 13));
+
+        // while(!pq.isEmpty()) {
+        //     System.out.println(pq.peek());   // O(logn)
+        //     pq.poll();                      // O(1)
+        // }
+        while(!pq.isEmpty()) {
+            System.out.println(pq.peek().name + " -> " + pq.peek().rank);   // O(logn)
+            pq.poll();                      // O(1)
+        }
+
+
+    }
+}
+
+output:
+C -> 10
+A -> 12
+D -> 13
+B -> 15

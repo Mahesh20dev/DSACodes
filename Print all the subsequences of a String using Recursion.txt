@@ -1,0 +1,50 @@
+// Print all the subsequences of a String.
+import java.util.Scanner;
+public class rio {
+    public static void subsequences(String str, int idx, String newStr) {
+        if(idx == str.length()) {
+            System.out.println(newStr);
+            return;
+        }
+
+        char currChar = str.charAt(idx);
+
+        // to be
+        subsequences(str, idx+1, newStr+currChar);
+
+        // or to not be
+        subsequences(str, idx+1, newStr);
+    }
+
+    public static void main(String args []) {
+        String str = "abc";
+        subsequences(str, 0, "");
+
+    }
+
+}
+Output:
+abc
+ab
+ac
+a
+bc                                  // Time complexity = O(2^n-1) = O(2^n)
+b                                      where 1 is neglected.
+c
+ 
+for "abcd" output is
+abcd
+abc
+abd
+ab
+acd
+ac
+ad
+a
+bcd
+bc
+bd
+b
+cd
+c
+d

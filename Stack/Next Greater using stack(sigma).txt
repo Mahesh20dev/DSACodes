@@ -1,0 +1,55 @@
+// Next Greater using stack(sigma)
+import java.util.*;
+public class Main {
+
+    public static void nextGreater(int[] arr) {
+        int[] res = new int[arr.length];
+        if(arr.length == 0) {
+            return;
+        }
+        for(int i=0; i<arr.length-1; i++) {
+            for(int j=i+1; j<arr.length; j++) {
+                if(arr[i] < arr[j]) {
+                    res[i] = arr[j];
+                    break;
+                }
+                else {
+                    res[i] = -1;
+                }
+            }
+        }
+        res[arr.length-1] = -1;
+        for(int i=0; i<res.length; i++) {
+            System.out.print(res[i] + " ");
+        }
+        System.out.println();
+    }
+    
+    public static void main(String[] args) {
+        int[] arr = {2, 3, 7, 1, 5};
+        // nextGreater(arr);
+        Stack<Integer> stack = new Stack<>();
+        int n = arr.length;
+        int[] nxtGreater = new int[n];
+
+        for(int i=n-1; i>=0; i--) {
+            // 1 while
+            while(!stack.isEmpty() && arr[stack.peek()] <= arr[i]) {
+                stack.pop();
+            }
+            // 2 if-else
+            if(stack.isEmpty()) {
+                nxtGreater[i] = -1;
+            } else {
+                nxtGreater[i] = arr[stack.peek()];
+            }
+            // 3 push to stack
+            stack.push(i);
+        }
+
+        for(int i=0; i<nxtGreater.length; i++) {
+            System.out.print(nxtGreater[i] + " ");
+        } 
+        System.out.println();
+    }
+}

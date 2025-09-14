@@ -1,0 +1,61 @@
+// Longest Increasing Path in a matrix (DP- leetcode(329)) - hard
+class Lab {
+    // DFS + Memoization Time and space = O(n * m)
+    public static int longestIncreasingPath(int[][] matrix) {
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return 0;
+        }
+        int n = matrix.length;
+        int m = matrix[0].length;
+        if(n == 1 && m == 1) {
+            return 1;
+        }
+
+        int dp[][] = new int[n][m];
+        int maxPath = 1;
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<m; j++) {
+                maxPath = Math.max(maxPath, dfs(matrix,i, j, dp));
+            }
+        }
+        print(dp);
+        return maxPath;  
+    }
+
+    public static int dfs(int matrix[][], int row, int col, int[][] dp) {
+        int dirs[][] = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+        if(dp[row][col] > 0) {
+            return dp[row][col];
+        }
+        int longPath = 1;
+
+        for(int dir[] : dirs) {
+            int nRow = row + dir[0];
+            int nCol = col + dir[1];
+
+            if(nRow < 0 || nCol < 0 || nRow >= matrix.length || nCol >= matrix[0].length) {
+                continue;
+            }
+            if(matrix[nRow][nCol] <= matrix[row][col]) {
+                continue;
+            }
+            longPath = Math.max(longPath, dfs(matrix, nRow, nCol, dp)+1);
+        }
+        return dp[row][col] = longPath;
+    }
+
+    public static void print(int dp[][]) {
+        for(int i=0; i<dp.length; i++) {
+            for(int j=0; j<dp[0].length; j++) {
+                System.out.print(dp[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int matrix[][] = {{9,9,4},{6,6,8},{2,1,1}};
+        System.out.println(longestIncreasingPath(matrix));
+    }
+}

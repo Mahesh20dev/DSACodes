@@ -1,0 +1,115 @@
+//Given a linked list, swap every two adjacent nodes and return its head.
+// You must solve the problem without modifying the values in the list's nodes
+// (i.e., only nodes themselves may be changed.)
+
+
+public class Pattern1 {
+    Node head;
+    private int size;
+    Pattern1() {
+        this.size = 0;
+    }
+    class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = next;
+            size++;
+        }
+    }
+
+    // addFirst
+    public void addFirst(int data) {
+        Node newNode = new Node(data);
+        if(head == null) {
+            head = newNode;
+            return ;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // addLast
+    public void addLast(int data) {
+        Node newNode = new Node(data);
+        if(head == null) {
+            head = newNode;
+            return;
+        }
+        Node currNode = head;
+        while(currNode.next != null) {
+            currNode = currNode.next;
+        }
+        currNode.next = newNode;
+    }
+
+    // printList
+    public void printList() {
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node currNode = head;
+        while(currNode != null) {
+            System.out.print(currNode.data + " -> ");
+            currNode = currNode.next;
+        }
+        System.out.println("Null");
+    }
+
+    // swap Pairs
+    public Node swapPairs(Node head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+        Node currNode = head.next.next;
+        Node prev = head;
+        head = head.next;
+        head.next = prev;
+
+        while(currNode != null && currNode.next != null) {
+            prev.next = currNode.next;
+            prev = currNode;
+            Node temp = currNode.next.next;
+            currNode.next.next = currNode;
+            currNode = temp;
+        }
+        prev.next = currNode;
+        return head;
+    }
+
+    // get size
+    public int getSize() {
+        return size;
+    }
+
+    public static void main(String[] args) {
+        Pattern1 list = new Pattern1();
+        list.addFirst(3);
+        list.addFirst(2);
+        list.addFirst(1);
+        list.addLast(4);
+        list.addLast(5);
+        list.addLast(6);
+        list.printList();
+
+        list.head = list.swapPairs(list.head);
+        list.printList();
+
+        System.out.println(list.getSize());
+
+    }
+
+}
+
+Output:
+
+1 -> 2 -> 3 -> 4 -> 5 -> 6 -> Null
+2 -> 1 -> 4 -> 3 -> 6 -> 5 -> Null
+6
+
+// Time = O(n)
+// Space = O(1)

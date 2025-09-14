@@ -1,0 +1,39 @@
+// Union and Intersection (HashSet) sigma
+import java.util.*;
+public class Practice {
+    public static void main(String[] args) {
+        int arr1[] = {7, 3, 9};
+        int arr2[] = {6, 3, 9, 2, 9, 4};
+        HashSet<Integer> set = new HashSet<>();
+
+        // Union
+        for(Integer i: arr1) {
+            set.add(i);
+        }
+        
+        for(Integer j: arr2) {
+            set.add(j);
+        }
+
+        System.out.println("Union = " + set.size());
+        System.out.println(set);
+
+        // Intersection
+        set.clear();
+        for(Integer i: arr1) {
+            set.add(i);
+        }
+        
+        ArrayList<Integer> list = new ArrayList<>();
+        for(Integer j: arr2) {
+            if(set.contains(j)) {
+                list.add(j);
+                set.remove(j);
+            }
+        }
+        System.out.println("Intersection = " + list.size());
+        System.out.println(list);
+    }
+}
+//      Time complexity and space complexity = O(N + M) 
+//       where N = length of arr1 , M = length of arr2

@@ -1,0 +1,77 @@
+// Alien dictionary(Topo sort)
+
+import java.util.*;
+import java.util.LinkedList;
+
+public class Leetcode {
+    public static void calInDeg(ArrayList<Integer> graph[], int inDeg[]) {
+        for(int i=0; i<graph.length; i++) {
+            int curr = i;
+            for(int nbr: graph[curr]) {
+                inDeg[nbr]++;
+            }
+        }
+    }
+
+    public static void topologicalSort(ArrayList<Integer> graph[], ArrayList<Integer> list) {
+        // ArrayList<Integer> list = new ArrayList<>();
+        Queue<Integer> q = new LinkedList<>();
+        int inDeg[] = new int[graph.length];
+        // Arrays.fill(inDeg, -1);
+        calInDeg(graph, inDeg);
+
+        for(int i=0; i<inDeg.length; i++) {
+            if(inDeg[i] == 0 && graph[i].size() > 0) {
+                q.add(i);
+            }
+        }
+
+        while(!q.isEmpty()) {
+            int curr = q.remove(); 
+            list.add(curr);
+
+            for(int nbr: graph[curr]) {
+                
+                inDeg[nbr]--;
+
+                if(inDeg[nbr] == 0) {
+                    q.add(nbr);
+                }
+            }
+        }   
+    }
+
+    public static void main(String[] args) {
+        String[] words = {"dddc ", "a", "ad", "ab", "b", "be", "cd", "cded"};
+        @SuppressWarnings("unchecked")
+        ArrayList<Integer> adj[] = new ArrayList[26];
+
+        for(int i=0; i<26; i++) {
+            adj[i] = new ArrayList<>();
+        }
+
+        for(int i=0; i<words.length-1; i++) {
+            String s1 = words[i];
+            String s2 = words[i+1];
+
+            int len = Math.min(s1.length(), s2.length());
+
+            for(int ptr=0; ptr<len; ptr++) {
+                if(s1.charAt(ptr) != s2.charAt(ptr)) {
+                    adj[s1.charAt(ptr) - 'a'].add(s2.charAt(ptr) - 'a');
+                    break;
+                }
+            }
+        }
+
+        ArrayList<Integer> list = new ArrayList<>();
+        topologicalSort(adj, list);
+        
+        String ans = "";
+
+        for(int it: list) {
+            ans = ans + (char)(it + (int)'a');
+        }
+        System.out.println(ans);
+    }
+}

@@ -1,0 +1,104 @@
+// Linked List add and remove only(Stack implementation)
+import java.util.ArrayList;
+public class Pattern {
+    Node head;
+    class Node {
+        String data;
+        Node next;
+
+        Node(String data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    // addFirst
+    public void addFirst(String data) {
+        Node newNode = new Node(data);
+        if(head == null) {
+            head = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // addLast
+    public void addLast(String data) {
+        Node newNode = new Node(data);
+        if(head == null) {
+            head = newNode;
+            return;
+        }
+        Node currNode = head;
+        while(currNode.next != null) {
+            currNode = currNode.next;
+        }
+        currNode.next = newNode;
+    }
+
+    // Print
+    public void printList() {
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        Node currNode = head;
+        while(currNode != null) {
+            System.out.print(currNode.data + " -> ");
+            currNode = currNode.next;
+        }
+        System.out.println("Null");
+    }
+
+    // deleteFirst
+    public void deleteFirst() {
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        head = head.next;
+    }
+
+    // deleteLast
+    public void deleteLast() {
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if(head == null) {
+            head = null;
+            return;
+        }
+
+        Node secondLast = head;
+        Node lastNode = head.next;
+        while(lastNode != null) {
+            secondLast = secondLast.next;
+            lastNode = lastNode.next;
+        }
+        secondLast.next = null;
+    }
+
+    //main function
+    public static void main(String... args) {
+        Pattern list = new Pattern();
+        list.addFirst("a");
+        list.addFirst("is");
+        list.addFirst("this");
+        list.addLast("list");
+        list.printList();
+
+        list.deleteFirst();
+        list.printList();
+
+        list.deleteLast();
+        list.printList();
+    }
+}
+
+Output:
+this -> is -> a -> list -> Null
+is -> a -> list -> Null
+is -> a -> list -> Null

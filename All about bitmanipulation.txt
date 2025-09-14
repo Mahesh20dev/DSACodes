@@ -1,0 +1,126 @@
+// All about bitmanipulation
+import java.util.*;
+public class Main {
+    public static void evenOrOdd(int n) {
+        int bitMask = 1;
+        if((n & bitMask) == 0) {
+            System.out.println("Even no");
+        } else {
+            System.out.println("Odd no");
+        }
+    }
+
+    public static int getbit(int n, int i) {
+        int bitmask = 1 << i;
+        if((n & bitmask) == 0) {
+            return 0;
+        }else {
+            return 1;
+        } 
+    }
+
+    public static int setbit(int n, int i) {
+        int bitmask = 1 << i;
+        // n = (n | bitmask);
+        // return n;    or
+        return n | bitmask;
+    }
+
+    public static int clearBit(int n, int i) {
+        int bitmask = ~(1 << i);
+        return n & bitmask;
+    }
+
+    public static int updatebit(int n, int i, int newBit) {
+        // if(newBit == 0) {
+        //     return clearBit(n, i);
+        // } else {
+        //     return setbit(n, i);
+        // }
+
+        //  or
+        n = clearBit(n, i);
+        int bitMask = newBit << i;
+        return n | bitMask; 
+    }
+
+    public static int clearTillIbit(int n, int i) {
+        int bitMask = -1 << i;  // or ~0 << i
+        return n & bitMask;
+    } 
+
+    public static int clearInRangebit(int n, int i, int j) {
+        int a = ~0 << (j+1);
+        int b = (1 << i) - 1;
+        int bitMask = a|b;
+        return n & bitMask;
+    }
+
+    public static boolean isPowerof2(int n) {
+        if(n == 1) {
+            return false;
+        }
+        return (n & (n-1)) == 0;
+    }
+
+    public static int count1Bit(int n) {
+        int count = 0;
+        while(n > 0) {
+            if((n & 1) != 0) {       // LSB
+                count++;
+            }
+            n = n >> 1;
+        }
+        return count;
+    }
+
+    public static int fastExpo(int a, int n) {
+        int ans = 1;
+        while(n > 0) {
+            if((n & 1) != 0) {
+                ans *= a; 
+            }
+            a *= a;
+            n >>= 1;  
+        }
+        return ans;
+    }
+
+    public static void swap(int a, int b) {
+        a = a ^ b;
+        b = a ^ b;
+        a = a ^ b;
+        System.out.println("a = "+ a + "  b = " + b);    
+    }
+
+    public static void main(String[] args) {
+        // System.out.println(6 >> 1);
+        // evenOrOdd(5);
+        // evenOrOdd(8);
+        // System.out.println(getbit(7, 2));
+        // System.out.println(setbit(10, 2));
+        // System.out.println(clearBit(10, 3));
+        // System.out.println(10 ^ 10);
+        // swap(10, 5);
+        // System.out.println(updatebit(10, 2, 1));
+        // System.out.println(clearTillIbit(15, 2));
+        // System.out.println(clearInRangebit(10, 2, 4));
+        System.out.println(isPowerof2(0));
+        // System.out.println(count1Bit(0));
+        // System.out.println(fastExpo(4, 3));
+        // int x = 0;
+        // System.out.println(x + " + "+ 1 + " is " +  -~x);
+
+        String s1 = "AbuZaR";
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<s1.length(); i++) {
+            char ch = s1.charAt(i);
+
+            if(ch <= 'A' && ch <= 'Z') {
+                ch = (char) (ch | ' ');
+            }
+            sb.append(ch);
+        }
+        System.out.println(sb);
+    }
+}

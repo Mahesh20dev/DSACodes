@@ -1,0 +1,69 @@
+// Print upward and downward diagonal in 2D array
+import java.util.*;
+public class MonthlyPractice {
+    public static void diagonal(int matrix[][]) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i=0; i<matrix.length; i++) {
+            int row = i, col = 0;
+            while(row >= 0 && col < matrix[0].length) {
+                list.add(matrix[row][col]);
+                row--;
+                col++;
+            }
+        }
+
+        for (int j = 1; j < matrix[0].length; j++) {
+            int row = matrix.length - 1, col = j;
+            while (row >= 0 && col < matrix[0].length) {
+                list.add(matrix[row][col]);
+                row--;
+                col++;
+            }
+        }
+        print(list);
+    }
+
+    public static void diagonal1(int matrix[][]) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int n = matrix.length;
+        int m = matrix[0].length; 
+
+        for(int i=0; i<m; i++) {
+            int row = 0, col = i;
+            while(row < n && col >= 0) {
+                list.add(matrix[row][col]);
+                row++;
+                col--;
+            }
+        }
+
+        for(int j=1; j<n; j++) {
+            int row = j, col = m-1;
+            while(row < n && col >= 0) {
+                list.add(matrix[row][col]);
+                row++;
+                col--;
+            }
+        }
+        print(list);
+    }
+
+    public static void print(ArrayList<Integer> list) {
+        for(int i=0; i<list.size(); i++) {
+            System.out.print(list.get(i) + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        int matrix[][] = {{1, 2, 3},{4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
+        int[][] matrix2 = { {1, 2}, {3, 4}, {5, 6} };  // Rectangular (3x2)
+        int[][] matrix3 = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12} };  // Rectangular (3x4)
+        int[][] matrix4 = { {1} };  // Single element matrix
+        int[][] matrix5 = { {1}, {2}, {3} };  // Single column matrix
+        int[][] matrix6 = { {1, 2, 3} };  // Single row matrix
+        diagonal(matrix6);
+        System.out.println();
+        diagonal1(matrix6);
+        
+    }
+}

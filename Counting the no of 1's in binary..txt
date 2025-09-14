@@ -1,0 +1,19 @@
+// Counting the no of 1's in binary.
+import java.util.Scanner;
+public class rio {
+    public static void main(String[] args) {
+        int num = 7; // Replace with your desired number
+        int count = 0;
+        while (num > 0) {
+            if (num % 2 == 1) {
+                count++;
+            }
+            num /= 2;
+        }
+        System.out.println("The number of 1's in the binary is " +count);
+    }
+}
+
+
+Output:
+The number of 1's in the binary is 3

@@ -1,0 +1,63 @@
+//Rotten Oranges
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Pattern {
+    public static int orangesRotting(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        Queue<int[]> queue = new LinkedList<>();
+        int freshOranges = 0;
+
+        // Add all rotten oranges to the queue and count the number of fresh oranges
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == 2) {
+                    queue.offer(new int[]{i, j});
+                } else if (grid[i][j] == 1) {
+                    freshOranges++;
+                }
+            }
+        }
+
+        int minutesElapsed = 0;
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+        while (!queue.isEmpty() && freshOranges > 0) {
+            int size = queue.size();
+
+            for (int i = 0; i < size; i++) {
+                int[] curr = queue.poll();
+
+                for (int[] dir : directions) {
+                    int newRow = curr[0] + dir[0];
+                    int newCol = curr[1] + dir[1];
+
+                    if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && grid[newRow][newCol] == 1) {
+                        grid[newRow][newCol] = 2;
+                        queue.offer(new int[]{newRow, newCol});
+                        freshOranges--;
+                    }
+                }
+            }
+
+            minutesElapsed++;
+        }
+
+        return freshOranges == 0 ? minutesElapsed : -1;
+
+//        return minutesElapsed;
+    }
+
+    public static void main(String[] args) {
+        int[][] grid = {{2, 1, 1}, {1, 1, 0}, {0, 1, 1}};
+        int minutes = orangesRotting(grid);
+        System.out.println("Minimum number of minutes required to rot all oranges: " + minutes);
+    }
+}
+
+Output:
+Minimum number of minutes required to rot all oranges: 4
+// -1
+// 0

@@ -1,0 +1,87 @@
+// Zig-Zag Diagonal matrix 
+public class Lab {
+    public static int[] matrixDiagonally(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        int[] ans = new int[n * m];
+        int i = 0, j = 0, idx = 0;
+        boolean up = true; // true means upward diagonal, false means downward
+
+        while (idx < n * m) {
+            ans[idx++] = mat[i][j];
+            System.out.print(mat[i][j] + " ");
+            
+            if (up) { // Moving up-right
+                if (j == m - 1) { // If we're at the last column, go down
+                    i++;
+                    up = false;
+                } else if (i == 0) { // If we're at the first row, move right
+                    j++;
+                    up = false;
+                } else { // Move up-right diagonally
+                    i--;
+                    j++;
+                }
+            } else { // Moving down-left
+                if (i == n - 1) { // If we're at the last row, move right
+                    j++;
+                    up = true;
+                } else if (j == 0) { // If we're at the first column, move down
+                    i++;
+                    up = true;
+                } else { // Move down-left diagonally
+                    i++;
+                    j--;
+                }
+            }
+        }
+        
+        return ans;
+    }
+
+    public static int[] matrixDiagonally1(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        int[] ans = new int[n * m];
+        int i = 0, j = 0, idx = 0;
+        boolean down = true; // true means upward diagonal, false means downward
+
+        while (idx < n * m) {
+            ans[idx++] = mat[i][j];
+            System.out.print(mat[i][j] + " ");
+            
+            if (down) { // Moving up-right
+                if (i == n - 1) { // If we're at the last column, go down
+                    j++;
+                    down = false;
+                } else if (j == 0) { // If we're at the first row, move right
+                    i++;
+                    down = false;
+                } else { // Move up-right diagonally
+                    i++;
+                    j--;
+                }
+            } else { // Moving down-left
+                if (j == m - 1) { // If we're at the last row, move right
+                    i++;
+                    down = true;
+                } else if (i == 0) { // If we're at the first column, move down
+                    j++;
+                    down = true;
+                } else { // Move down-left diagonally
+                    i--;
+                    j++;
+                }
+            }
+        }
+        
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int mat[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        matrixDiagonally(mat);
+        System.out.println();
+        matrixDiagonally1(mat);
+    }
+}

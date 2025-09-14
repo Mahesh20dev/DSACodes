@@ -1,0 +1,42 @@
+// Take elements(numbers in the range of 1-50) of a Linked List as input from 
+// the user. Delete all nodes which have values greater than 25.
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class main {
+    public static void main(String[] args) {
+        // Create a new LinkedList
+        LinkedList<Integer> linkedList = new LinkedList<>();
+
+        // Create a Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the number of elements
+        System.out.print("Enter the number of elements: ");
+        int numElements = scanner.nextInt();
+
+        // Prompt the user to enter the elements
+        System.out.println("Enter the elements (numbers in the range of 1-50):");
+        for (int i = 0; i < numElements; i++) {
+            int element = scanner.nextInt();
+            linkedList.add(element);
+        }
+
+        // Delete nodes with values greater than 25
+        linkedList.removeIf(n -> n > 25);
+
+        // Display the updated linked list
+        System.out.println("Updated linked list: " + linkedList);
+
+        // Close the scanner  // this scanner one is not needed
+        scanner.close();
+    }
+}
+ 
+Output:
+Enter the number of elements: 3
+Enter the elements (numbers in the range of 1-50):
+23
+25
+44
+Updated linked list: [23, 25]

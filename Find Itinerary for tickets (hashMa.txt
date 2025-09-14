@@ -1,0 +1,47 @@
+// Find Itinerary for tickets (hashMap) sigma
+import java.util.*;
+public class Practice {
+    public static String getStart(HashMap<String, String> tickets) {
+        HashMap<String, String> revMap = new HashMap<>();
+
+        for(String key : tickets.keySet()) {
+            revMap.put(tickets.get(key), key);
+        }
+
+        for(String key : tickets.keySet()) {
+            if(!revMap.containsKey(key)) {
+                return key;
+            }
+        }
+        return null;
+    } 
+    public static void main(String[] args) {
+        HashMap<String, String> tickets = new HashMap<>();
+        tickets.put("Chennai", "Bengaluru");
+        tickets.put("Mumbai", "Delhi");
+        tickets.put("Goa", "Chennai");
+        tickets.put("Delhi", "Goa");
+
+        String start = getStart(tickets);
+        System.out.print(start);
+
+        for(String key : tickets.keySet()) {
+            System.out.print(" -> " + tickets.get(start));
+            start = tickets.get(start);
+        }
+    }
+}
+
+// output : Mumbai -> Delhi -> Goa -> Chennai -> Bengaluru
+
+// Time complexiy : 
+// Time complexity for building revMap: O(n).
+// Time complexity for finding the start point: O(n).
+// Time complexity for printing the itinerary: O(n).
+// The overall time complexity is O(n) + O(n) + O(n) = O(n).
+
+// // Space complexity :
+// Space complexity for revMap: O(n).
+// The overall space complexity is O(n) for storing the revMap. 
+// The space required by the tickets HashMap is input-dependent and doesn't add to the space complexity 
+// of the algorithm itself. Therefore, the space complexity is O(n).

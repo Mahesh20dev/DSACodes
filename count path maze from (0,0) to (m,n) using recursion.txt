@@ -1,0 +1,27 @@
+//count path maze from (0,0) to (m,n)
+class main {
+    public static int countPaths(int i, int j, int m, int n){
+        if(i == m || j == n) {                  // base casee 1
+            return 0;
+        }
+        if(i == m-1 && j == n-1) {             // base case 2
+            return 1;
+        }
+
+        // downward move
+        int downPath = countPaths(i+1, j, m, n);
+
+        // rightward move
+        int rightPath = countPaths(i, j+1, m, n);
+
+        return downPath + rightPath;
+    }
+    public static void main(String args[]) {
+        int m=3, n=3;
+        int totalPaths = countPaths(0,0, m, n);
+        System.out.println(totalPaths);
+    }
+}
+
+Output:
+6

@@ -1,0 +1,46 @@
+// HashSet(Dictionaries) and new forLoop
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class Pattern {
+    public static void main(String args[]) {
+        HashMap<String, Integer> map = new HashMap<>();
+
+        //insertion
+        map.put("India", 120);
+        map.put("China", 150);
+        map.put("USA", 30);
+        System.out.println(map);
+
+        map.put("USA", 50);
+        System.out.println(map);
+
+        // search
+        if(map.containsKey("Indonesia")) {
+            System.out.println("Key is found in the map");
+        } else {
+            System.out.println("Key is not present in the map");
+        }
+
+        System.out.println(map.get("China"));
+        System.out.println(map.get("Indonesia"));
+
+        // iteration
+       for(Map.Entry<String, Integer> e : map.entrySet()) {
+           System.out.println(e.getKey());
+           System.out.println(e.getValue());
+       }
+
+        // iteration 2
+        Set<String> keys = map.keySet();
+        for(String key : keys) {
+            System.out.println(key + " " + map.get(key));
+        }
+        System.out.println();
+
+        // remove
+        map.remove("China");
+        System.out.println(map);
+    }
+}

@@ -1,0 +1,36 @@
+// HasPath graph - leetcode (sigma)
+class Solution {
+    public boolean dfs(ArrayList<Integer> adj[], int source, int destination, boolean vis[]) {
+        if(source == destination) return true;    // base case   O(n)
+        vis[source] = true;
+
+        // visit neightbours       O(E)
+        for(int nbr: adj[source]) {     
+            if(!vis[nbr] && dfs(adj, nbr, destination, vis)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+        ArrayList<Integer> adj[] = new ArrayList[n];   // creating adj list
+
+        for(int i=0; i<n; i++) {        // initializing null -> empty ArrayList
+            adj[i] = new ArrayList<>();
+        }
+
+        for(int[] edge: edges) {    // inserting neighbous in the ArrayList
+            int a = edge[0];
+            int b = edge[1];
+
+            adj[a].add(b);
+            adj[b].add(a);
+        }
+
+        return dfs(adj, source, destination, new boolean[n]);
+    }
+}
+
+// Time = (n + E)    dfs
+// space = (n + E)  adjaceny list 

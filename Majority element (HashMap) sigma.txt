@@ -1,0 +1,37 @@
+// Majority element (HashMap) sigma
+import java.util.*;
+public class Solution {
+    public static void main(String[] args) {
+        int arr[] = {1, 3, 2, 5, 1, 3, 1, 5, 1};
+        HashMap<Integer, Integer> mp = new HashMap<>();
+
+        // for(int i=0; i<arr.length; i++) {
+        //     if(mp.containsKey(arr[i])) {
+        //         mp.put(arr[i], mp.get(arr[i])+1);
+        //     } else {
+        //         mp.put(arr[i], 1);
+        //     }
+        // }
+         
+        // shortcut
+        for(int i=0; i<arr.length; i++) {
+            mp.put(arr[i], mp.getOrDefault(arr[i], 0) + 1);
+        }
+
+        // Set<Integer> keys = mp.keySet();
+        // for(Integer key : keys) {
+        //     if(mp.get(key) > arr.length/3) {
+        //         System.out.println(key);
+        //     }
+        // }
+
+        // short cut
+        for(Integer key : mp.keySet()) {
+            if(mp.get(key) > arr.length/3) {
+                System.out.println(key);
+            }
+        }
+    }
+}
+
+// Time = O(n)

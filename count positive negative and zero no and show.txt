@@ -1,0 +1,51 @@
+import java.util.Scanner;
+//import java.lang.Math;
+public class Practice {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int cp = 0, cn = 0, cz = 0;
+        for(int i=1; i>0; i++) {
+            System.out.print("Enter the no: ");
+            int n = sc.nextInt();
+
+            if(n == 0) {
+                cz++;
+            } else if (n > 0) {
+                cp++;
+            } else {
+                cn++;
+            }
+            System.out.println("Do you want to continue yes(1) no(0)");
+            int t = sc.nextInt();
+
+            if(t == 0) {
+                break;
+            } else if (t == 1) {
+                continue;
+            } else {
+                System.out.println("You entered invalid number");
+            break;
+            }
+        }
+        System.out.println("Number of Positive integer is "+ cp);
+        System.out.println("Number of Negative integer is "+ cn);
+        System.out.println("Number of Zero is "+ cz);
+    }
+}
+
+output :
+Enter the no: 6
+Do you want to continue yes(1) no(0)
+1
+Enter the no: 5
+Do you want to continue yes(1) no(0)
+1
+Enter the no: 0
+Do you want to continue yes(1) no(0)
+1
+Enter the no: -7
+Do you want to continue yes(1) no(0)
+0
+Number of Positive integer is 2
+Number of Negative integer is 1
+Number of Zero is 1

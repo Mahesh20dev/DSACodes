@@ -1,0 +1,31 @@
+// ArmStrong Number 2
+public class Practice {
+    public static void ArmStrong(int number) {
+        
+        for(int i=1; i<number; i++) {
+            int noOfDigit = i;
+            String str = String.valueOf(noOfDigit);
+            int n = str.length();
+            int result = 0;
+            int originalNo = i;
+            while(originalNo != 0) {
+                int remainder = originalNo % 10;
+                result += Math.pow(remainder, n);
+                originalNo /= 10;
+            }
+            if(result == i) {
+                System.out.print( i + ", ");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int number = 2000;;
+    
+        ArmStrong(number);
+       
+    }
+}
+
+output:
+1, 2, 3, 4, 5, 6, 7, 8, 9, 153, 370, 371, 407, 1634,

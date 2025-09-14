@@ -1,0 +1,66 @@
+// Sorting of String word using Merge sort
+import java.util.*;
+public class Practice {
+
+    public static String[] sort(String[] arr1, int si, int ei){
+        if(si >= ei) {
+            String b[] = new String[1];
+            b[0] = arr1[si];
+            return b;
+        }   
+        
+        int mid = si + (ei - si)/2;
+        String[] left = sort(arr1, si, mid);
+        String[] right = sort(arr1, mid+1, ei);
+
+        String[] res = merge(left, right);
+        return res;
+    }
+
+    public static String[] merge(String[] left, String[] right) {
+        int m = left.length;
+        int n = right.length;
+        String res[] = new String[m+n];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+        while(i < m && j < n) {
+            if(isFirstLetterSmall(left[i], right[j])) {
+                res[k] = left[i];
+                i++;
+            } else {
+                res[k] = right[j];
+                j++;
+            }
+            k++;
+        }
+
+        while(i < m) {
+            res[k++] = left[i++];
+        }
+        while(j < n) {
+            res[k++] = right[j++];
+        }
+        return res;
+    }
+
+    public static boolean isFirstLetterSmall(String left, String right) {
+        if(left.compareTo(right) < 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    
+    public static void main(String[] args) {
+        String[] arr1 = {"sun", "earth", "mars", "mercury"};
+        
+        // String[] res = sort(arr1, 0, arr1.length-1);
+        // for(int i=0; i<res.length; i++) {
+        //     System.out.print(res[i] + " ");
+        // }
+
+
+    }
+}

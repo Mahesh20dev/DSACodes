@@ -1,0 +1,41 @@
+// Find duplicate subtrees in Binary Tree(sigma)
+class Solution {
+    public String dfs(TreeNode root, HashMap<String, Integer> mp, List<TreeNode> ans) {
+        if(root == null) {
+            return "#";
+        }
+        String left = dfs(root.left, mp, ans);
+        String right = dfs(root.right, mp, ans);
+
+        String st = left + "," + right + "," + String.valueOf(root.val);
+        // String.valueOf(root.val) converting integer to string 
+
+        if(mp.containsKey(st)) {
+            if(mp.get(st) == 1) { // already occured one time 
+                ans.add(root);      // so store it into arrayList one time 
+            }
+            mp.put(st, mp.get(st)+1);  // occured if more than one time 
+        } else {
+            mp.put(st, 1);    // first time occuring
+        }
+        return st; 
+    }
+
+    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        List<TreeNode> ans = new ArrayList<>();
+        HashMap<String, Integer> mp = new HashMap<>();
+    
+        dfs(root, mp, ans);
+        return ans;
+    }
+}
+
+// Space Complexity:
+// The space complexity is O(N*M), where:
+// N is the number of nodes in the tree.
+// M is the maximum number of nodes in any subtree.
+
+// Time Complexity:
+// The time complexity of the provided solution is O(N*M), where:
+// N is the number of nodes in the tree.
+// M is the maximum number of nodes in any subtree.

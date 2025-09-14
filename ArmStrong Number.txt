@@ -1,0 +1,27 @@
+// ArmStrong Number
+public class Practice {
+    public static void ArmStrong(int number, int n) {
+        
+        int result = 0;
+        int originalNo = number;
+        while(originalNo != 0) {
+            int remainder = originalNo % 10;
+            result += Math.pow(remainder, n);
+            originalNo /= 10;
+        }
+        if(result == number) {
+            System.out.println("It is Armstrong no ");
+        }else {
+            System.out.println("It is not Armstrong number");
+        }
+    }
+
+    public static void main(String[] args) {
+        int number = 40;
+        String str = String.valueOf(number);
+        int n = str.length();
+        ArmStrong(number, n);
+       
+    }
+}
+

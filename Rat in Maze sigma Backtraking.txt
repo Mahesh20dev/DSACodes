@@ -1,0 +1,29 @@
+// Rat in Maze sigma Backtraking
+public class Main {
+
+    public static void ratInMaze(int[][] board, int x, int y, String curr) {
+        // base case
+        if(x < 0 || y < 0 || x == board.length || y == board.length || board[x][y] == 0) {
+            return;
+        }
+
+        if(x == board.length-1 && y == board.length-1) {
+            System.out.print(curr + " ");
+        }
+        // recursion
+        board[x][y] = 0;
+
+        ratInMaze(board, x+1, y, curr+'D');
+        ratInMaze(board, x-1, y, curr+'U');
+        ratInMaze(board, x, y-1, curr+'L');
+        ratInMaze(board, x, y+1, curr+'R');        
+    }
+    public static void main(String[] args) {
+        int[][] board = { { 1, 0, 0, 0 },
+                          { 1, 1, 0, 1 },
+                          { 0, 1, 0, 0 },
+                          { 1, 1, 1, 1 }};
+
+        ratInMaze(board, 0, 0, "");
+    }
+}

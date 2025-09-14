@@ -1,0 +1,111 @@
+// Recursion Part2
+import java.util.*;
+public class New {
+
+    public static int tilesCount(int n) {
+        if(n == 0 || n == 1) {
+            return 1;
+        }
+
+        // verical 
+        int fnm1 = tilesCount(n-1);
+        // horizontal
+        int fnm2 = tilesCount(n-2);
+        return fnm1 + fnm2;
+    }
+
+    public static void removeDuplicate(String str, int idx, StringBuilder newStr, boolean[] map) {
+        if(idx == str.length()) {
+            System.out.println(newStr);
+            return;
+        }
+
+        // kaam
+        char currChar = str.charAt(idx);
+        if(map[currChar-'a'] == true) {
+            removeDuplicate(str, idx+1, newStr, map);
+        } else {
+            map[currChar-'a'] = true;
+            removeDuplicate(str, idx+1, newStr.append(currChar), map);
+        }
+    }
+
+    public static int friendsPairing(int n) {
+        if(n == 1 || n == 2) {
+            return n;
+        }
+        // TotalWays = single or rest of single + 1 Pair * rest pair
+        return friendsPairing(n-1) + (n-1) * friendsPairing(n-2);
+    }
+
+    public static void printBinaryStr(int n, int lastplace, String str) {
+        if(n == 0) {
+            System.out.println(str);
+            return;
+        }
+
+        printBinaryStr(n-1, 0, str+"0");
+        if(lastplace == 0) {
+            printBinaryStr(n-1, 1, str+"1");
+        }
+    }
+
+    public static void indexesOftheElement(int[] arr, int idx, int key) {
+        if(idx == arr.length) {
+            return;
+        }
+       
+        if(arr[idx] == key) {
+            System.out.print(idx + " ");
+        }
+        indexesOftheElement(arr, idx+1, key);
+    }
+    
+    public static void towerOfHanoi(int n, String src, String help, String des) {
+        if(n == 1) {
+            System.out.println("Transefer of disc "+n+ " from " + src +" to "+ des);
+            return;
+        }
+
+        towerOfHanoi(n-1, src, des, help);
+        System.out.println("Transefer of disc "+n+ " from " + src +" to "+ des);
+        towerOfHanoi(n-1, help, src, des);
+    }
+
+    public static int lengthString(String str) {
+        if(str.length() == 0) {
+            return 0;
+        }
+
+        return lengthString(str.substring(1) + 1) ;
+    }
+
+    public static int noOfSubstring(String str, int left, int right, int n) {
+        if(n == 1) {
+            return 1;
+        }
+
+        if(left >= right) {
+            return 0;
+        }
+        int result = noOfSubstring(str, left+1, right, n-1) + noOfSubstring(str, left, right-1, n-1) - noOfSubstring(str, left+1, right-1, n-2);
+        if(str.charAt(left) == str.charAt(right)) {
+            result++;
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        // System.out.println(tilesCount(6));
+        String str = "appnnacozzllege";
+        // removeDuplicate(str, 0, new StringBuilder(""), new boolean[26]);
+        // System.out.println(friendsPairing(5));
+        // printBinaryStr(3, 0, "");
+
+        // int[] arr = {3, 2, 4, 5, 6, 2, 7, 2, 2};
+        // indexesOftheElement(arr, 0, 2);
+    //     towerOfHanoi(3, "A", "B", "C");
+
+        // System.out.println(lengthString("abcd"));
+        System.out.println(noOfSubstring("abcab", 0, str.length()-1, str.length()));
+    }
+}

@@ -1,0 +1,58 @@
+// Topological Sort Leetcode (course schedule 2) sigma
+// here we need to find it is cyclic graph or not aswell
+class Solution {
+    // dfs
+    public int[] topSort(ArrayList<Integer> adj[]) {
+        boolean vis[] = new boolean[adj.length];
+        boolean recStack[] = new boolean[adj.length];
+        Stack<Integer> s = new Stack<>();
+
+        for(int i=0; i<adj.length; i++) {
+            if(!vis[i]) {
+                if(!topSortUtil(adj, i, vis, s, recStack)) {
+                    return new int[0]; 
+                }
+            }
+        }
+        int[] res = new int[adj.length];
+        int idx = 0;
+        while(!s.isEmpty()) {
+            res[idx++] = s.pop();
+        }
+        return res;
+    }
+
+    public boolean topSortUtil(ArrayList<Integer> adj[], int curr, boolean vis[], Stack<Integer> s, boolean recStack[]) {
+        vis[curr] = true;
+        recStack[curr] = true;
+
+        for(int i=0; i<adj[curr].size(); i++) {
+            int e = adj[curr].get(i);
+            if(!vis[e]) {
+                if(!topSortUtil(adj, e, vis, s, recStack)) {
+                    return false; // cycle detected
+                }
+            }else if(recStack[e]) {
+                return false;     // cycle detected
+            }
+        }
+        recStack[curr] = false;
+        s.push(curr);
+        return true;
+    }
+
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        ArrayList<Integer> adj[] = new ArrayList[numCourses];
+
+        for(int i=0; i<adj.length; i++) {
+            adj[i] = new ArrayList<>();
+        }
+
+        for(int edge[]: prerequisites) {
+            int a = edge[0];
+            int b = edge[1];
+            adj[b].add(a);
+        }
+        return topSort(adj);
+    }
+}

@@ -1,0 +1,71 @@
+// Range sum Binary Search Tree
+import java.util.*;
+public class Practice {
+    static class Node {
+        int data;
+        Node left;
+        Node right;
+        Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    public static Node insert(Node root, int val) {
+        if(root == null) {
+            return root = new Node(val);
+            // return root;
+        }
+        if(root.data > val) {
+            // left subtree
+            root.left = insert(root.left, val);
+        } else {
+            // right subtree
+            root.right = insert(root.right, val);
+        }
+        return root;
+    }
+
+    public static void inOrder(Node root) {
+        if(root == null) return;
+        inOrder(root.left);
+        System.out.print(root.data + " ");
+        inOrder(root.right);
+    }
+
+    // rangeSumBST
+    public static int rangeSumBST(Node root, int min, int max) {
+        
+        Stack<Node> s = new Stack<>();
+        int sum = 0;
+        Node curr = root;
+
+        while(!s.isEmpty() || curr != null) {
+            while(curr != null) {
+                s.push(curr);
+                curr = curr.left;
+            }
+
+            curr = s.pop();
+            if(curr.data >= min && curr.data <= max) {
+                sum = sum + curr.data;
+            }
+            curr = curr.right;
+        }
+        return sum;
+    }
+    public static void main(String[] args) {
+        int values[] = {8, 5, 3, 6, 10, 11, 14};
+        Node root = null;
+
+        for(int i=0; i<values.length; i++) {
+            root = insert(root, values[i]);
+        }
+
+        inOrder(root);
+        System.out.println();
+
+        System.out.println(rangeSumBST(root, 3, 10));
+    }
+}

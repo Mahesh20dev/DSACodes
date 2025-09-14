@@ -1,0 +1,22 @@
+// Factorial of n using recursion.
+import java.util.Scanner;
+public class rio {
+    public static int calFact(int n) {
+        if(n==0 || n==1) {
+            return 1;
+        }
+        int fact_nm1 = calFact(n-1);
+        int fact =  n * fact_nm1;
+        return fact;
+    }
+
+    public static void main(String args []) {
+        int n = 4;
+        int ans = calFact(n);
+        System.out.println(ans);
+
+    }
+}
+
+Output:
+24

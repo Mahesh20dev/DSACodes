@@ -1,0 +1,25 @@
+// Duplicates element in Kth region
+public class rio {
+    public static boolean duplicateContainsWithinK(int[] array, int k) {
+
+        for(int i=0; i<array.length; i++) {
+            for (int j = i + 1; j< k + 1; j++) {
+                if (array[i] == array[j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    public static void main(String[] args) {
+//        int[] array = {1, 2, 3, 4, 1, 2, 3, 4};
+        int[] array = {1, 2, 3, 1, 2, 3};
+        System.out.println(duplicateContainsWithinK(array, 2));
+
+    }
+}
+
+Output:
+false

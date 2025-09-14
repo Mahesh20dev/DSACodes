@@ -1,0 +1,63 @@
+import java.util.Scanner;
+public class rio {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in) ;
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        int[][] matrix = new int[n][m];
+
+        // input
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<m; j++) {
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("The spiral order Matrix is : ");
+        int rowStart = 0;
+        int rowEnd = n-1;
+        int colStart = 0;
+        int colEnd = m-1;
+
+        while(rowStart <= rowEnd && colStart <= colEnd) {
+
+            //1
+            for(int col=colStart; col<=colEnd; col++) {
+                System.out.print(matrix[rowStart][col] + " ");
+            }
+            rowStart++;
+
+            //2
+            for(int row=rowStart; row<=rowEnd; row++) {
+                System.out.print(matrix[row][colEnd] + " ");
+            }
+            colEnd--;
+
+            //3
+            for(int col=colEnd; col>=colStart; col--) {
+                System.out.print(matrix[rowEnd][col] + " ");
+            }
+            rowEnd--;
+
+            //4
+            for(int row=rowEnd; row>=rowStart; row--) {
+                System.out.print(matrix[row][colStart] + " ");
+            }
+            colStart++;
+        }
+    }
+}
+
+output:
+
+5
+5
+1 2 3 4 5
+6 7 8 9 10
+11 12 13 14 15
+16 17 18 19 20
+21 22 23 24 25
+The spiral order Matrix is : 
+1 2 3 4 5 10 15 20 25 24 23 22 21 16 11 6 7 8 9 14 19 18 17 12 13 
+Process finished with exit code 0

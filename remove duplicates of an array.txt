@@ -1,0 +1,43 @@
+// remove duplicates of an array
+public class Practice {
+    public static void sortArray(int[] array) {
+        for(int i=0; i<array.length; i++) {
+            for(int j=i+1; j<array.length; j++) {
+                if(array[i] > array[j]) {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+    }
+    public static int removeDuplicates(int[] array, int n) {
+        if(n == 0 || n == 1) {
+            return n;
+        }
+        int j = 0;
+        for(int i=0; i<n-1; i++) {
+            if(array[i] != array[i+1]) {
+                array[j++] = array[i];
+            }
+        }
+        array[j++] = array[n-1];
+        return j;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 2, 4, 5, 3, 4, 5};
+        int n = array.length;
+
+        sortArray(array);
+        int array2 = removeDuplicates(array, n);
+
+        for(int i=0; i<array2; i++) {
+            System.out.print(array[i] + " ");
+        }
+
+    }
+}
+
+Output:
+1 2 3 4 5 

@@ -1,0 +1,29 @@
+// Tower of Hanoi using recursion
+public class Practice {
+    public static void towerofHanoi(int n, String src, String help, String dest) {
+        if(n == 1) {
+            System.out.println("Transfer of disk " + n + " from "+ src + " to "+ dest);
+            return;
+        }
+
+        towerofHanoi(n-1, src, dest, help);
+        System.out.println("Transfer of disk " + n + "  "+ src + " to "+ dest );
+        towerofHanoi(n-1, help, src, dest);
+    }
+
+    public static void main(String[] args) {
+        int n=3;
+        towerofHanoi(n, "S", "H", "D");
+    }
+}
+
+ Output:
+
+Transfer of disk 1 from S to D
+Transfer of disk 2  S to H
+Transfer of disk 1 from D to H
+Transfer of disk 3  S to D
+Transfer of disk 1 from H to S
+Transfer of disk 2  H to D
+Transfer of disk 1 from S to D
+

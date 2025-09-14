@@ -1,0 +1,127 @@
+// Doubly Linked List sigma
+public class Main {
+    public static class Node {
+        int data;
+        Node next;
+        Node prev;
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+            this.prev = null;
+        }
+    }
+    public static Node head;
+    public static Node tail;
+    public static int size;
+
+    public void addFirst(int data) {
+        Node newNode = new Node(data);
+        size++;
+        if(head == null) {
+            head = tail = newNode;
+            return;
+        }
+
+        newNode.next = head;
+        head = newNode;
+        head.prev = null;
+    }
+
+    public void addLast(int data) {
+        Node newNode = new Node(data);
+        size++;
+        if(head == null) {
+            head = tail = newNode;
+            return;
+        }
+        Node prev = head;
+        while(prev.next != null) {
+            prev = prev.next;
+        }
+        prev.next = newNode;
+        tail = newNode;
+        tail.next = null;
+    }
+
+    public int removeFirst() {
+        if(size == 0) {
+            System.out.println("Linked List is empty");
+            return Integer.MIN_VALUE;
+        }else if(size == 1) {
+            int val = head.data;
+            head = tail = null;
+            size = 0;
+            return val;
+        }
+        int val = head.data;
+        head = head.next;
+        head.prev = null;
+        size--;
+        return val;
+    }
+
+    public int removeLast() {
+        if(size == 0) {
+            System.out.println("Linked List is empty");
+            return Integer.MIN_VALUE;
+        }else if(size == 1) {
+            int val = head.data;
+            head = tail = null;
+            size = 0;
+            return val;
+        }
+
+        Node prev = head;
+        int i=0;
+        while(i < size-2) {
+            prev = prev.next;
+            i++;
+        }
+        int val = prev.next.data;
+        prev.next = null;
+        tail = prev;
+        size--;
+        return val;
+    }
+
+    public void reverse() {
+        Node curr = head;
+        Node prev = null;
+        Node next;
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next;
+
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
+    public void print() {
+        Node temp = head;
+        System.out.print("null <-> ");
+        while(temp != null) {
+            System.out.print(temp.data + " <-> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+    
+    public static void main(String[] args) {
+        Main ll = new Main();
+        ll.addFirst(3);
+        ll.addFirst(2);
+        ll.addFirst(1);
+        ll.addLast(4);
+        ll.addLast(5);
+        ll.removeFirst();
+        ll.removeLast();
+        ll.print();
+
+        ll.reverse();
+        ll.print();
+    }
+}
