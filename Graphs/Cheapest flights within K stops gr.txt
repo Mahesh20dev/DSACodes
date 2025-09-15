@@ -44,11 +44,8 @@ public class Demo {
         ArrayList<Edge> graph[] = new ArrayList[n];
         createGraph(flights, graph);
         int dist[] = new int[n];
-        for(int i=0; i<dist.length; i++) {
-            if(i != src) {
-                dist[i] = Integer.MAX_VALUE;
-            }
-        }
+        Arrays.fill(dist,Integer.MAX_VALUE);
+        dist[0]=0;
 
         Queue<Info> q = new LinkedList<>();
         q.add(new Info(src, 0, 0));
