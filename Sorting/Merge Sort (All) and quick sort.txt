@@ -6,6 +6,10 @@ public class DSA {
         }
     }
 
+    mergeSort
+    Time Complexity	O(n log n)
+    Space Complexity	O(n)
+
     public static void mergeSort(int[] arr, int si, int ei) {
         // base case
         if(si >= ei) {
@@ -69,7 +73,7 @@ public class DSA {
         int pivot = arr[ei];
         int i = si-1;      // to make space for smaller elements than pivot
 
-        for(int j=si; j<arr.length; j++) {
+        for(int j=si; j<ei; j++) {
             if(arr[j] < pivot) {
                 i++;
                 // swap
