@@ -37,3 +37,13 @@ class Solution {
         return re;
     }
 }
+
+
+// Instead of starting from every cell and checking whether water can reach both oceans,
+// we reverse the problem:
+
+// Start DFS from the Pacific border → mark all cells that can reach the Pacific.
+
+// Start DFS from the Atlantic border → mark all cells that can reach the Atlantic.
+
+// The intersection of both → cells that can reach both oceans.
