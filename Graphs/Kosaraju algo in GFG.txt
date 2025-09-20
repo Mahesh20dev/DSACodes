@@ -1,5 +1,6 @@
 // Kosaraju algo in GFG
 class Solution {
+    
    public void topSort(ArrayList<ArrayList<Integer>> adj, int curr, boolean vis[],  Stack<Integer> s) {
        vis[curr] = true;
        
