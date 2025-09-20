@@ -44,7 +44,8 @@ public class OnceAgain {
     public static void dfs(ArrayList<Edge> transpose[], int curr, boolean vis[]) {
         vis[curr] = true;
         System.out.print(curr + " ");
-        for(Edge e : transpose[curr]) {
+        for(int i=0; i<transpose[curr].size(); i++) {
+            Edge e = transpose[curr].get(i);
             if(!vis[e.dest]) {
                 dfs(transpose, e.dest, vis);
             }
