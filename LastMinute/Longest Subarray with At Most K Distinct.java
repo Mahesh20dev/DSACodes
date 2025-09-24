@@ -36,3 +36,7 @@ class Solution {
 // Input: nums = [1,2,1,2,3], k = 2
 // Output: 4
 // Explanation: The longest subarray with at most 2 distinct integers is [1,2,1,2] with length 4.
+// Example 2:
+// Input: nums = [1,2,1,3,4], k = 3
+// Output: 4
+// Explanation: The longest subarray with at most 3 distinct integers is [1,2,1,3] with length 4.
