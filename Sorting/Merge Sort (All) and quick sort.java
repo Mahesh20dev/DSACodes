@@ -6,9 +6,9 @@ public class DSA {
         }
     }
 
-    mergeSort
-    Time Complexity	O(n log n)
-    Space Complexity	O(n)
+    // mergeSort
+    // Time Complexity	O(n log n)
+    // Space Complexity	O(n)
 
     public static void mergeSort(int[] arr, int si, int ei) {
         // base case
@@ -58,6 +58,7 @@ public class DSA {
             arr[i] = temp[k];
         }
     }
+
 
     public static void quickSort(int[] arr, int si, int ei) {
         if(si >= ei) {

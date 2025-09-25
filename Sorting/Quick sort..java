@@ -1,17 +1,17 @@
 // Quick sort.
-Property	Quick Sort
-Time Complexity     (Best/Average)	O(n log n)
-Time Complexity      (Worst)	O(n²)
-Space Complexity	O(1)
+// Property	Quick Sort
+// Time Complexity     (Best/Average)	O(n log n)
+// Time Complexity      (Worst)	O(n²)
+// Space Complexity	O(1)
 
 public class Practise2 {
     public static void quicksort(int arr[], int low, int high) {
-        if(low < high) {
-            int pidx = partition(arr, low, high);
-
-            quicksort(arr, low, pidx-1);
-            quicksort(arr, pidx+1, high);
+        if(low >= high) {
+            return;
         }
+        int pidx = partition(arr, low, high);
+        quicksort(arr, low, pidx-1);
+        quicksort(arr, pidx+1, high);
     }
 
     public static int partition(int arr[], int low, int high) {
@@ -23,16 +23,16 @@ public class Practise2 {
                 i++;
 
                 // swap
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
             }
         }
         // swap with pivot
         i++;
-        int temp = arr[i];
-        arr[i] = arr[high];
-        arr[high]= temp;
+        int temp = pivot;
+        arr[high] = arr[i];
+        arr[i] = temp;
         return i;
     }
 
@@ -49,12 +49,12 @@ public class Practise2 {
 }
 // Time complexity is  O(n^2)
 
-Output:
-3 5 6 8 9 
+// Output:
+// 3 5 6 8 9 
 
 
-important:
-Worst case occurs
-when pivot is always
-the smallest or the
-largest element.
+// important:
+// Worst case occurs
+// when pivot is always
+// the smallest or the
+// largest element.

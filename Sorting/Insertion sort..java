@@ -26,6 +26,9 @@ public class Pattern1 {
         printArray(arr);
     }
 }
-
-Output:
-1 2 3 7 8 
+// Time complexity: O(n^2)
+// Space complexity: O(1)
+// example: 7,8,3,1,2
+// output: 1,2,3,7,8
+//explanation: Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
+// It is a stable, in-place, comparison-based sorting algorithm. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
