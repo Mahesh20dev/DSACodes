@@ -46,7 +46,9 @@ public class Practice2 {
         if(nums.length == 1) {
             return nums[1];
         }
-
+         if(nums.length==2){
+            return Math.max(nums[0],nums[1]);
+        }
         dp[0] = nums[0];
         dp[1] = Math.max(nums[1], nums[0]);
 

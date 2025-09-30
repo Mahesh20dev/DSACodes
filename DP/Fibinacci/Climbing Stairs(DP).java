@@ -10,6 +10,7 @@ public class Revision {
 
     // Memoization       O(n)
     public static int countWays(int n, int dp[]) {
+        Arrays.fill(dp, -1);    
         if(n == 0) return 1;
         if(n < 0) return 0;
 
