@@ -77,3 +77,10 @@ public class Solution {
         System.out.println(lcs3(str1, str2));
     }
 }
+
+//example of longest common subsequence
+//example 1 
+// String str1 = "ABCDE";
+// String str2 = "ABGCE"
+// ans = 4 "ABCE"
+//explanation: we can remove D from str1 and G from str2 to make both the strings equal
