@@ -71,7 +71,7 @@ public class OnceAgain {
         }
 
         for(int i=0; i<V; i++) {
-            for(int j=0; j<graph[i].size(); i++) {
+            for(int j=0; j<graph[i].size(); j++) {
                 Edge e = graph[i].get(j);
                 transpose[e.dest].add(new Edge(e.dest, e.src));  // reversing edge
             }
