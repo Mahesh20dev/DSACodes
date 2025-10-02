@@ -16,8 +16,8 @@ public class UnionFind {
     }
 
     public static void union(int a,int b){
-        int x=par[a];
-        int y=par[b];
+        int x=find(a);
+        int y=find(b);
 
         if(rank[x]==rank[y]){
             par[x]=y;
