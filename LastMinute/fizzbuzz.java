@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class FizzBuzz {
+public class fizzbuzz {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the value of n: ");
